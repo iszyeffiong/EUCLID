@@ -5,6 +5,8 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Link } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import faviconPng from "../assets/favicon.png";
+import faviconIco from "../assets/favicon.ico";
 
 function NotFoundComponent() {
   return (
@@ -51,8 +53,8 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", type: "image/png", href: "/favicon.png" },
-      { rel: "shortcut icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", href: faviconPng },
+      { rel: "shortcut icon", href: faviconIco },
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
