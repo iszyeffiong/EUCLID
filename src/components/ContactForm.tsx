@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { z } from "zod";
+import { SERVICES } from "@/lib/business";
 
 const schema = z.object({
   name: z.string().trim().min(1, "Name required").max(100),
   phone: z.string().trim().min(7, "Phone required").max(30),
   email: z.string().trim().email("Invalid email").max(255).or(z.literal("")),
+  service: z.string().min(1, "Please select a service"),
   message: z.string().trim().min(1, "Message required").max(1000),
 });
 
@@ -52,6 +54,23 @@ export function ContactForm() {
           />
         </label>
       </div>
+      <label className="block">
+        <span className="mb-1 block text-sm font-semibold">Service Needed</span>
+        <select
+          name="service"
+          required
+          className="w-full rounded-md border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20"
+        >
+          <option value="">Select a service...</option>
+          {SERVICES.map((s) => (
+            <option key={s.slug} value={s.title}>
+              {s.title}
+            </option>
+          ))}
+          <option value="Other">Other / Not Listed</option>
+        </select>
+      </label>
+
       <label className="block">
         <span className="mb-1 block text-sm font-semibold">Email (optional)</span>
         <input
